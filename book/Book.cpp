@@ -3,7 +3,7 @@
 #include<string>
 
 Book::Book(string ISBN1, string name1, string author1, string date1, Genre book_type1) {
-	if (!change(ISBN1))//È·¶¨ISBNºÅÊÇ·ñÕıÈ·
+	if (!change(ISBN1))//ç¡®å®šISBNå·æ˜¯å¦æ­£ç¡®
 		throw invalid{};
 	ISBN = ISBN1;
 	name = name1;
@@ -13,7 +13,7 @@ Book::Book(string ISBN1, string name1, string author1, string date1, Genre book_
 	lend = false;
 }
 
-void Book::Borrowed()//  ½èÊéºÍ»¹ÊéµÄ×´Ì¬
+void Book::Borrowed()//  å€Ÿä¹¦å’Œè¿˜ä¹¦çš„çŠ¶æ€
 {
 	if (lend == true)
 		throw borrowed{};
@@ -24,23 +24,23 @@ void Book::Borrowed()//  ½èÊéºÍ»¹ÊéµÄ×´Ì¬
 	}
 }
 
-bool Book::change(string Isbn) {//¼ì²âISBNºÅÊÇ·ñÕıÈ·
+bool Book::change(string Isbn) {//æ£€æµ‹ISBNå·æ˜¯å¦æ­£ç¡®
 	int lenth = Isbn.size();
 	for (int i = 0; i < lenth - 1; ++i) {
 		int x = Isbn[i];
-		if (Isbn[i] == '-') {//µ±ISBNºÅÖĞ³öÏÖ¡®-¡¯Ê±Ìø¹ı
+		if (x == '-') {//å½“ISBNå·ä¸­å‡ºç°â€˜-â€™æ—¶è·³è¿‡
 			continue;
 		}
-		if ((x >= 48 && x <= 57))//¼ì²âÊé·ñÎªÊı×Ö
+		if ((x >= 48 && x <= 57))//æ£€æµ‹ä¹¦å¦ä¸ºæ•°å­—
 			return true;
 	}
 	int x = Isbn[lenth - 1];
-	if (!((x >= 48 && x <= 57) || (x >= 65 && x <= 90) || (x <= 122 && x >= 97)))//¼ì²â×îºóÒ»Î»ÊÇ·ñÎªÊı×Ö»ò×ÖÄ¸
+	if (!((x >= 48 && x <= 57) || (x >= 65 && x <= 90) || (x <= 122 && x >= 97)))//æ£€æµ‹æœ€åä¸€ä½æ˜¯å¦ä¸ºæ•°å­—æˆ–å­—æ¯
 		return false;
 }
 
 
-bool operator == (const Book& book1, const Book& book2)//¹ØÓÚ¼¸¸öÖØÔØÔËËã·ûµÄº¯Êı
+bool operator == (const Book& book1, const Book& book2)//å…³äºå‡ ä¸ªé‡è½½è¿ç®—ç¬¦çš„å‡½æ•°
 {
 	return(book1.get_ISBN() == book2.get_ISBN()) ? true : false;
 }
